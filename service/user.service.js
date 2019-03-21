@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 export default class Userservice{
     static async signIn(email,password){
-        const URL = "https://serveruser.herokuapp.com/user/signin";
+        const URL = "https://serveruseronline.herokuapp.com/user/signin";
         const response = await axios.post(URL , {email , password});
         if(response.data.user){
             await AsyncStorage.setItem("@token",response.data.user.token);     
@@ -23,7 +23,7 @@ export default class Userservice{
                 await Userservice.wait();
                 throw new Error("No token")
             }
-            const URL = "https://serveruser.herokuapp.com/user/check";
+            const URL = "https://serveruseronline.herokuapp.com/user/check";
             const response = await axios.post(URL , {token});
             if(!response.data.success) throw new Error ("No token");
             return response.data.user;
